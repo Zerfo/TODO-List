@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.app {
+  background-color: $gray-light-color;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.wrapper {
+  left: 50%;
+  min-height: 30%;
+  min-width: 40%;
+  max-height: 80%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
