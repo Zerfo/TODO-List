@@ -5,8 +5,6 @@ import { Task } from 'types/tasks';
 function getTasksFromLS(): Task[] | null {
   const validationResult = Storage.getItem('TASKS');
 
-  console.log(validationResult);
-
   return validationResult.success ? validationResult.data : null;
 }
 
