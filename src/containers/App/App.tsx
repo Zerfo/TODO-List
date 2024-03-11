@@ -1,4 +1,6 @@
-import { memo, useEffect } from 'react';
+import {
+  ReactNode, memo, useEffect, useMemo,
+} from 'react';
 
 import Block from 'components/Block';
 import Divider from 'components/Divider';
@@ -18,6 +20,18 @@ function App() {
 
   const tasks = useTasks();
 
+  const isEmptyTasks = useMemo<boolean>(
+    () => !tasks || tasks.length === 0,
+    [tasks],
+  );
+
+  const EmptyTasks = useMemo<ReactNode>(() => (
+    <div className={styles.emptyWrapper}>
+      <img src={emptyImage} alt="empty" className={styles.emptyImage} />
+      <Text type="default">No data</Text>
+    </div>
+  ), [isEmptyTasks]);
+
   useEffect(() => {
     dispatch(fetchTasks());
   }, []);
@@ -28,12 +42,7 @@ function App() {
         <Title level={3}>My Tasks</Title>
         <Divider />
 
-        {(!tasks || tasks.length === 0) && (
-          <div className={styles.emptyWrapper}>
-            <img src={emptyImage} alt="empty" className={styles.emptyImage} />
-            <Text type="default">No data</Text>
-          </div>
-        )}
+        {EmptyTasks}
       </Block>
     </div>
   );
