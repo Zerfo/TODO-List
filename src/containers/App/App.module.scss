@@ -15,4 +15,13 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+
+  & > .emptyWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 10%;
+  }
 }
