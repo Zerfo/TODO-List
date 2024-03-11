@@ -1,0 +1,79 @@
+@import '../../styles/variables.scss';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  & > .inputWrapper {
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+
+    & > input {
+      display: block;
+      width: calc(100% - 40px);
+      height: 40px;
+      background: transparent;
+      border: none;
+      border-bottom: solid 1px $gray-color;
+      transition: all .3s ease;
+      padding: 0 15px;
+
+      &:focus {
+        outline: none;
+        border: none;
+        border-bottom: solid 1px $black-color;
+      }
+    }
+
+    & > label {
+      position: absolute;
+      cursor: text;
+      z-index: 2;
+      top: 13px;
+      left: 0px;
+      font-size: 12px;
+      font-weight: bold;
+      background: $white-color;
+      padding: 0 10px;
+      color: $gray-color;
+      transition: all .3s ease;
+    }
+
+    & > input:focus + label,
+    & > input:valid + label {
+      font-size: 11px;
+      top: -5px;
+    }
+
+    & > input:focus + label {
+      color: $black-color;
+    }
+  }
+
+  & > .btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 30px;
+    border-radius: 8px;
+
+    &:hover {
+      background: $gray-light-color;
+    }
+
+    &:active {
+      background-color: $thumb-color;
+    }
+
+    & > .btnIcon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import {
   ReactNode, memo, useEffect, useMemo,
 } from 'react';
 
+import AddTask from 'components/AddTask';
 import Block from 'components/Block';
 import Divider from 'components/Divider';
 import Text from 'components/Text';
@@ -41,6 +42,8 @@ function App() {
       <Block className={styles.wrapper}>
         <Title level={3}>My Tasks</Title>
         <Divider />
+
+        <AddTask placeholder="Your task" />
 
         {EmptyTasks}
       </Block>

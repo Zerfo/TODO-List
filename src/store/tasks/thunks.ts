@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import getTasksFromLS from 'utils/getTasksFromLS';
+import { Storage } from 'utils/loclaStorage';
 
 import {
   AddTaskParams, ChangeTaskParams, RemoveTaskParams, Task,
@@ -20,17 +21,17 @@ export const fetchAddTask = createAsyncThunk(
     let newData = [];
     const newTask = {
       title: params.title,
-      created_at: new Date(),
+      created_at: new Date().toTimeString(),
       isCompleted: false,
     } as Task;
 
     if (!oldData) {
       newTask.id = 0;
-      localStorage.addItem('tasks', JSON.stringify([newTask]));
+      Storage.setItem('TASKS', [newTask]);
       newData = [newTask];
     } else {
       newTask.id = oldData.length;
-      localStorage.addItem('tasks', JSON.stringify([...oldData, newTask]));
+      Storage.setItem('TASKS', [...oldData, newTask]);
       newData = [...oldData, newTask];
     }
 
@@ -45,11 +46,11 @@ export const fetchChangeTask = createAsyncThunk(
 
     const newData = oldData.map((task) => (task.id === params.id ? {
       ...task,
-      title: params.title,
-      isCompleted: params.isCompleted,
+      title: params.title || task.title,
+      isCompleted: params.isCompleted || task.isCompleted,
     } : task));
 
-    localStorage.setItem('tasks', JSON.stringify(newData));
+    Storage.setItem('TASKS', newData);
 
     return newData as Task[];
   },
@@ -63,12 +64,12 @@ export const fetchRemoveTask = createAsyncThunk(
     const newData = oldData.filter((task) => task.id !== params.id);
 
     if (newData.length > 0) {
-      localStorage.addItem('tasks', JSON.stringify(newData));
+      Storage.setItem('TASKS', newData);
 
       return newData as Task[];
     }
 
-    localStorage.removeItem('tasks');
+    Storage.removeItem('TASKS');
 
     return null;
   },

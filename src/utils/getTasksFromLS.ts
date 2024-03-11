@@ -1,13 +1,13 @@
-import { Task, TasksSchema } from 'types/tasks';
+import { Storage } from 'utils/loclaStorage';
+
+import { Task } from 'types/tasks';
 
 function getTasksFromLS(): Task[] | null {
-  const data = localStorage.getItem('tasks');
+  const validationResult = Storage.getItem('TASKS');
 
-  if (data) {
-    return TasksSchema.parse(data);
-  }
+  console.log(validationResult);
 
-  return null;
+  return validationResult.success ? validationResult.data : null;
 }
 
 export default getTasksFromLS;
