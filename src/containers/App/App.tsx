@@ -26,12 +26,16 @@ function App() {
     [tasks],
   );
 
-  const EmptyTasks = useMemo<ReactNode>(() => (
-    <div className={styles.emptyWrapper}>
-      <img src={emptyImage} alt="empty" className={styles.emptyImage} />
-      <Text type="default">No data</Text>
-    </div>
-  ), [isEmptyTasks]);
+  const EmptyTasks = useMemo<ReactNode>(() => {
+    if (!isEmptyTasks) return null;
+
+    return (
+      <div className={styles.emptyWrapper}>
+        <img src={emptyImage} alt="empty" className={styles.emptyImage} />
+        <Text type="default">No data</Text>
+      </div>
+    );
+  }, [isEmptyTasks]);
 
   useEffect(() => {
     dispatch(fetchTasks());
