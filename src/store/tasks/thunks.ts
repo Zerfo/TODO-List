@@ -4,15 +4,15 @@ import getTasksFromLS from 'utils/getTasksFromLS';
 import { Storage } from 'utils/loclaStorage';
 
 import {
-  AddTaskParams, ChangeTaskParams, RemoveTaskParams, Task,
+  AddTaskParams,
+  ChangeTaskParams,
+  RemoveTaskParams,
+  Task,
 } from 'types/tasks';
 
-export const fetchTasks = createAsyncThunk(
-  'tasks/fetchTasks',
-  () => {
-    return getTasksFromLS();
-  },
-);
+export const fetchTasks = createAsyncThunk('tasks/fetchTasks', () => {
+  return getTasksFromLS();
+});
 
 export const fetchAddTask = createAsyncThunk(
   'tasks/fetchAddTask',
@@ -44,11 +44,16 @@ export const fetchChangeTask = createAsyncThunk(
   async (params: ChangeTaskParams) => {
     const oldData = getTasksFromLS() as Task[];
 
-    const newData = oldData.map((task) => (task.id === params.id ? {
-      ...task,
-      title: params.title || task.title,
-      isCompleted: params.isCompleted || task.isCompleted,
-    } : task));
+    const newData = oldData.map((task) => (task.id === params.id
+      ? {
+        ...task,
+        title: params.title || task.title,
+        isCompleted:
+							params.isCompleted === false
+							  ? params.isCompleted
+							  : params.isCompleted || task.isCompleted,
+				  }
+      : task));
 
     Storage.setItem('TASKS', newData);
 
