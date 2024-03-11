@@ -1,0 +1,73 @@
+@import '../../styles/variables.scss';
+
+.text {
+  word-break: break-word;
+  line-height: 1.5;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: $black-color;
+}
+
+.secondary {
+  color: $gray-color;
+}
+
+.success {
+  color: $green-color;
+}
+
+.warning {
+  color: $orange-color;
+}
+
+.danger {
+  color: $red-color;
+}
+
+.disabled {
+  color: $gray-color;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.mark {
+  background-color: #ffe58f;
+}
+
+.code {
+  margin: 0 0.2em;
+  padding-inline: 0.4em;
+  padding-block: 0.2em 0.1em;
+  font-size: 85%;
+  background: rgba(150, 150, 150, .1);
+  border: 1px solid rgba(100, 100, 100, .2);
+  border-radius: 3px;
+}
+
+.keyboard {
+  margin: 0 0.2em;
+  padding-inline: 0.4em;
+  padding-block: 0.15em 0.1em;
+  font-size: 90%;
+  background: rgba(150, 150, 150, .06);
+  border: 1px solid rgba(100, 100, 100, .2);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+}
+
+.underline {
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+}
+
+.delete {
+  text-decoration: line-through;
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.italic {
+  font-style: italic;
+}
