@@ -14,6 +14,7 @@ import { fetchTasks } from 'store/tasks/thunks';
 
 import emptyImage from 'assets/images/empty-data.png';
 
+import TodoItem from 'components/TodoItem';
 import styles from './App.module.scss';
 
 function App() {
@@ -48,6 +49,12 @@ function App() {
         <Divider />
 
         <AddTask placeholder="Your task" />
+
+        <div className={styles.todoList}>
+          {tasks?.map((task) => (
+            <TodoItem key={task.id} {...task} />
+          ))}
+        </div>
 
         {EmptyTasks}
       </Block>
