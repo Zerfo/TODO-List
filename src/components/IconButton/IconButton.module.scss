@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+
+.wrapper {
+  align-items: center;
+  background: $gray-light-color;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+  justify-content: center;
+  outline: none;
+  border: none;
+
+  &:hover {
+    box-shadow: $shadow-s;
+  }
+
+  &:active {
+    box-shadow: $shadow-m;
+  }
+}
