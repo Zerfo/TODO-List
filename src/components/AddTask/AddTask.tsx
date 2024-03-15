@@ -1,11 +1,16 @@
 import {
-  KeyboardEvent, memo, useCallback, useState,
+  KeyboardEvent,
+  memo,
+  useCallback,
+  useState,
 } from 'react';
+
+import IconButton from 'components/IconButton';
 
 import { useAppDispatch } from 'store';
 import { fetchAddTask } from 'store/tasks/thunks';
 
-import sendIcon from 'assets/icons/send-icon.png';
+import SendIcon from 'assets/icons/send-icon.svg';
 
 import styles from './AddTask.module.scss';
 
@@ -53,13 +58,11 @@ function AddTask(props: TProps) {
         <label htmlFor="input">{placeholder}</label>
       </div>
 
-      <button
-        type="button"
+      <IconButton
         onClick={onAddTask}
         className={styles.btn}
-      >
-        <img src={sendIcon} alt="send" className={styles.btnIcon} />
-      </button>
+        icon={<SendIcon />}
+      />
     </div>
   );
 }

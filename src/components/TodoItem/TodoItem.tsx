@@ -2,6 +2,7 @@ import {
   ChangeEvent, memo, useCallback, useEffect, useState,
 } from 'react';
 
+import IconButton from 'components/IconButton';
 import Text from 'components/Text';
 
 import { useAppDispatch } from 'store';
@@ -9,10 +10,10 @@ import { fetchChangeTask, fetchRemoveTask } from 'store/tasks/thunks';
 
 import { Task } from 'types/tasks';
 
-import closeIcon from 'assets/icons/close-icon.png';
-import editIcon from 'assets/icons/edit-icon.png';
-import removeIcon from 'assets/icons/remove-icon.png';
-import saveIcon from 'assets/icons/save-icon.png';
+import CloseIcon from 'assets/icons/close-icon.svg';
+import EditIcon from 'assets/icons/edit-icon.svg';
+import RemoveIcon from 'assets/icons/remove-icon.svg';
+import SaveIcon from 'assets/icons/save-icon.svg';
 
 import styles from './TodoItem.module.scss';
 
@@ -97,37 +98,42 @@ function TodoItem(task: Task) {
             onChange={onCompleteTask}
           />
 
-          <Text type={isCompleted ? 'delete' : 'default'} className={styles.text}>{title}</Text>
+          <Text
+            type={isCompleted ? 'delete' : 'default'}
+            className={styles.text}
+          >
+            {title}
+          </Text>
         </>
       )}
 
       {isEdit ? (
         <div className={styles.btns}>
-          <button type="button" className={styles.btn} onClick={onChangeTask}>
-            <img src={saveIcon} alt="edit" className={styles.btnIcon} />
-          </button>
-
-          <button
-            type="button"
+          <IconButton
             className={styles.btn}
+            icon={<SaveIcon />}
+            onClick={onChangeTask}
+          />
+
+          <IconButton
+            className={styles.btn}
+            icon={<CloseIcon />}
             onClick={() => setIsEdit(false)}
-          >
-            <img src={closeIcon} alt="remove" className={styles.btnIcon} />
-          </button>
+          />
         </div>
       ) : (
         <div className={styles.btns}>
-          <button
-            type="button"
+          <IconButton
             className={styles.btn}
+            icon={<EditIcon />}
             onClick={() => setIsEdit(true)}
-          >
-            <img src={editIcon} alt="edit" className={styles.btnIcon} />
-          </button>
+          />
 
-          <button type="button" className={styles.btn} onClick={onRemoveTask}>
-            <img src={removeIcon} alt="remove" className={styles.btnIcon} />
-          </button>
+          <IconButton
+            className={styles.btn}
+            icon={<RemoveIcon />}
+            onClick={onRemoveTask}
+          />
         </div>
       )}
     </div>
